@@ -172,7 +172,11 @@ Chunk::Heightmap Chunk::getTopLayer(int flags) const {
 			ret.v[x][z] = Height { .y = y_idx_min, .depth = y_idx_min };
 	}
 
-	for (section_idx_t Y = sections.size() - 1; Y >= 0; Y--) {
+	int maxY = sections.size() -1;
+	if (maxY > 4)
+		maxY = 4;	
+
+	for (section_idx_t Y = maxY; Y >= 0; Y--) {
 		if (done == SIZE*SIZE)
 			break;
 
